@@ -6,13 +6,16 @@ export const fetchInitialState = {
   };
   
   export const fetchActions = {
-    'fetch/getPersons': (state, payloads) => {
-       return state.persons = payloads
+    'fetch/getPersons': (state, payload) => {
+       return {persons: payload}
     },
     logout: state => {
       return { user: { loggedIn: false } };
     },
     'fetch/morePersons': (state, payload) => {
-        return state.morePersons = payload
+        return {morePersons: payload}
+    },
+    'fetch/loading': (state) => {
+        return {loading: !state.loading }
     }
   };
