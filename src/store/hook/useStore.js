@@ -4,11 +4,12 @@ import React, { createContext, useReducer, useContext } from "react";
 
 import { countInitialState, countActions } from "./countActions";
 import { userInitialState, userActions } from "./userActions";
-
+import { fetchInitialState, fetchActions } from "./fetchActions";
 // combine initial states
 const initialState = {
   ...countInitialState,
-  ...userInitialState
+  ...userInitialState,
+  ...fetchInitialState
 };
 
 const StoreContext = createContext(initialState);
@@ -16,12 +17,13 @@ const StoreContext = createContext(initialState);
 // combine actions
 const Actions = {
   ...userActions,
-  ...countActions
+  ...countActions,
+  ...fetchActions
 };
 
 const reducer = (state, action) => {
   const act = Actions[action.type];
-  const update = act(state);
+  const update = act(state, action.payload);
   return { ...state, ...update };
 };
 
