@@ -7,15 +7,14 @@ const HooksPage = props => {
   const login = useCallback(() => dispatch({ type: "login" }), [dispatch]);
   const logout = useCallback(() => dispatch({ type: "logout" }), [dispatch]);
   const increment = useCallback(() => dispatch({type: 'incrementCount'}), [dispatch])
-  const fetchPersons = useCallback(() => dispatch({type: 'fetch/getPersons'}), [dispatch])
   const { loggedIn } = state.user
   const { count } = state
   const [users] = useUsers()
   const handleClick = () => {
     loggedIn ? logout() : login();
-    console.log(state)
   }
   const fetchPersonsData = async () => {
+    if (state.persons) return
     const data = await fetch('https://swapi.dev/api/people/1/')
     const response = await data.json()
     dispatch({type: 'fetch/getPersons', payload: response})
