@@ -13,15 +13,17 @@ const HooksPage = props => {
   const handleClick = () => {
     loggedIn ? logout() : login();
   }
-  const fetchPersonsData = async () => {
+  const fetchPersonsData = useCallback( async() => {
+    console.log('fetchpersons')
     if (state.persons) return
     const data = await fetch('https://swapi.dev/api/people/1/')
     const response = await data.json()
     dispatch({type: 'fetch/getPersons', payload: response})
-  }
+  }, [dispatch, state.persons])
+
   useEffect(() => {
     fetchPersonsData()
-  }, [])
+  }, [fetchPersonsData])
   
   return (
     <div>

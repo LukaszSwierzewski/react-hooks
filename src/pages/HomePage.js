@@ -23,7 +23,6 @@ const HomePage = (props) => {
     const toggleObj = (val) => {
         obj.toggler = !val
         btnSet(obj)
-        console.log(obj)
     }
     const dispatch = useDispatch()
     const [users] = useUsers()

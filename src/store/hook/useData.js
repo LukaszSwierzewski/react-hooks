@@ -6,7 +6,6 @@ const useUsers = () => {
       const { morePersons } = state
       useEffect(() => {
         async function fetchUsers() {
-          console.log(morePersons)
           if(morePersons.length > 0) return usersSet(morePersons)
           const fullResponse = await fetch('https://reqres.in/api/users');
           const responseJson = await fullResponse.json();
@@ -15,7 +14,7 @@ const useUsers = () => {
         }
 
     fetchUsers();
-  }, []);
+  }, [dispatch, morePersons]);
       return [users];
 };
 export default useUsers

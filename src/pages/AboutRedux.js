@@ -5,8 +5,6 @@ import { addToppings } from '../store/pizzaSlice';
 const HomePage = () => {
     const pizza = useSelector(state => state.pizza)
     const dispatch = useDispatch()
-
-    console.log(pizza)
     return (
         <div>
             {pizza.gluten && <p>asd</p>}
